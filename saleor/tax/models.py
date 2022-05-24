@@ -4,6 +4,7 @@ from django_countries.fields import CountryField
 
 from ..channel.models import Channel
 from ..core.models import ModelWithMetadata
+from ..core.permissions.enums import TaxPermissions
 
 
 class TaxClass(ModelWithMetadata):
@@ -12,6 +13,12 @@ class TaxClass(ModelWithMetadata):
 
     class Meta:
         ordering = ("is_default", "name")
+        permissions = (
+            (
+                TaxPermissions.MANAGE_TAXES.codename,
+                "Manage taxes.",
+            ),
+        )
 
     def __str__(self):
         return self.name
