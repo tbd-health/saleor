@@ -723,7 +723,7 @@ def test_generate_invoice_payload(fulfilled_order):
             "id": graphene.Node.to_global_id("Order", invoice.order.id),
             "language_code": "en",
             "private_metadata": {},
-            "metadata": {},
+            "metadata": invoice.order.metadata,
             "created": ANY,
             "status": "fulfilled",
             "origin": OrderOrigin.CHECKOUT,
